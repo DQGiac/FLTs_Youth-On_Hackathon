@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+    // const loading = document.getElementById("loading-overlay")
     let mindmapind = 0;
     const uploadInput = document.getElementById("upload-anh");
     const preview = document.getElementById("preview");
@@ -35,6 +36,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   
     async function handleUseButtonClick() {
+        document.querySelector("#loading-overlay").style.display = "flex";
         let result = ""
         const file = uploadInput.files[0];
         if (file) {
@@ -49,7 +51,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             console.log(result)
         } else {
             const vanban = document.getElementById("upload-vanban")
-            result = vanban.innerHTML;
+            result = vanban.value;
         }
         
         // const formdata = new FormData();
@@ -62,10 +64,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
         const image = document.createElement("img")
         image.src = "./static/mindmap" + mindmapind + ".png"
+        image.onclick = () => {
+            window.open(image.src, '_blank').focus();
+        }
+        image.style.maxWidth = "90%";
         result_section.innerHTML = "";
         result_section.appendChild(image);
         mindmapind += 1
         // answer = await response.json();
+        document.querySelector("#loading-overlay").style.display = "none";
+        document.body.classList.remove("loading");
     }
 
     uploadInput.addEventListener("change", handleImageUpload);
