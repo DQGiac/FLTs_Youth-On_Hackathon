@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+    let podcastind = 0
     const uploadInput = document.getElementById("upload-anh");
     const preview = document.getElementById("preview");
     const useButton = document.getElementById("use-button");
@@ -34,6 +35,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   
     async function handleUseButtonClick() {
+        document.querySelector("#loading-overlay").style.display = "flex";
         let result = ""
         const file = uploadInput.files[0];
         if (file) {
@@ -55,12 +57,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const response = await fetch("/podcast_gen", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },     
-            body: JSON.stringify( {"message": result} )
+            body: JSON.stringify({ "message": result, "podcastind": podcastind })
         });
-        const audio = document.createElement("audio");
-        audio.src = "sound.wav";
-        audio.type = "audio/wav";
-        result_section.appendChild(audio);
+        
+        let audio = document.getElementById("podcast_aud")
+        if (!audio) {
+            audio = document.createElement("audio")
+            audio.id = "podcast_aud"
+            audio.type = "audio/wav";
+            audio.src = "audio/podcast_aud" + podcastind + ".wav";
+            audio.controls = true
+            result_section.appendChild(audio);
+        } else {
+            audio.src = "audio/podcast_aud" + podcastind + ".wav"
+        }
+        podcastind += 1
+        document.querySelector("#loading-overlay").style.display = "none";
+        document.body.classList.remove("loading");
     }
 
     uploadInput.addEventListener("change", handleImageUpload);
