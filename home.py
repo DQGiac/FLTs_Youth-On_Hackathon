@@ -11,6 +11,9 @@ import pytesseract
 from pydub import AudioSegment
 from pydub.playback import play
 from gtts import gTTS
+import google.generativeai as genai
+from deep_translator import GoogleTranslator
+
 
 app = Flask(__name__)
 
@@ -56,9 +59,7 @@ def mindmap_gen():
     data = request.get_json()
     user_message = data['message']
 
-    # Call your ChatGPT function here
     bot_message = gemini('Hãy rút gọn thông tin và tạo code DOT (shape=box, style=filled, fillcolor=black, fontcolor=white) biễu diễn nội dung của đoạn văn sau:\n' + user_message)
-    # return jsonify({"content": bot_message})
 
     bot_message_dot = bot_message
     open_paren = -1
@@ -101,16 +102,80 @@ def mindmap_gen():
 @app.route("/podcast_gen", methods=['POST'])
 def podcast_gen():
     tts = gTTS(text=request.json["message"], lang="vi", slow=False)
-    tts.save("sound.wav")
-    # song = AudioSegment.from_file("sound.wav")
-    # play(song)
+    i = request.json["podcastind"]
+    tts.save("podcast_aud" + str(i) + ".wav")
+    return jsonify({"message": 0})
 
 @app.route("/strtell_gen", methods=['POST'])
 def strtell_gen():
-    tts = gTTS(text=request.json["message"], lang="vi", slow=False)
-    tts.save("sound.wav")
-    song = AudioSegment.from_file("sound.wav")
-    play(song)
+    api_keys = ["d89a8977f9mshd28e97843a01cf2p158370jsn0cb69019b238", "8eacc0c16dmshb79a0fe65bc3344p14e02ajsn29bf84e2e8b9"] #"8dd3bfa3f3mshda3845149bb330ep1c4505jsna147eee499b5", "030c80dc47mshbe06ccceee3100cp18b554jsnc6867b4f1b65", "0c6c1ec218msh58fce662b00a268p1e2172jsn77027176568f"
+    def summarizer(sentence, key):
+        url = "https://chatgpt-api8.p.rapidapi.com/"
+        payload = [
+            {
+                "content": "Hello! I'm an AI assistant bot based on ChatGPT 3. How may I help you?",
+                "role": "system"
+            },
+            {
+                "content": "Bạn hãy chọn và output 1 câu duy nhất diễn tả một hành động đặc sắc nhất trong đoạn sau:\n" + sentence,
+                "role": "user"
+            }
+        ]
+        headers = {
+            "content-type": "application/json",
+            "X-RapidAPI-Key": key,
+            "X-RapidAPI-Host": "chatgpt-api8.p.rapidapi.com"
+        }
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+        return data["text"]
+
+    def gemini(ques):
+        genai.configure(api_key="AIzaSyCfM6NvU3tQ_pr7gepDw02PYVTwIR6GjOM")
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        a = (model.generate_content(ques))
+        return a.candidates[0].content.parts[0].text
+
+    def texttoimage(message, key):
+        url = "https://open-ai21.p.rapidapi.com/texttoimage2"
+        payload = { "text": "Asia:" + message }
+        headers = {
+            "x-rapidapi-key": key,
+            "x-rapidapi-host": "open-ai21.p.rapidapi.com",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, json=payload, headers=headers)
+        print(response)
+        return response.json()["generated_image"]
+
+    def savemp3(text, i):
+        tts = gTTS(text=text, lang="vi", slow=False)
+        tts.save("strtell_aud" + str(i) + ".wav")
+
+    paragraphs = request.json
+    paragraphs = paragraphs["message"]
+    paragraphs = paragraphs.split("\n")
+    for i in range(len(paragraphs)):
+        paragraphs[i] = paragraphs[i].strip()
+    i = 0
+    while i < len(paragraphs):
+        if paragraphs[i] == "":
+            paragraphs.pop(i)
+        else:
+            i += 1
+
+    images = []
+    i = 0
+    while i < len(paragraphs):
+        savemp3(paragraphs[i], i)
+        plchd = summarizer(paragraphs[i], api_keys[i % len(api_keys)])
+        plchd = gemini("Bạn hãy output 1 câu duy nhất bản dịch tiếng anh của câu văn sau:\n" + plchd)
+        print(plchd)
+        plchd = (texttoimage(plchd, api_keys[(i - 1) % len(api_keys)]))
+        images.append({"url": plchd})
+        i += 1
+    print(images)
+    return jsonify({"message": images})
 
 
 if __name__ == "__main__":
