@@ -1,4 +1,5 @@
-<b>Competition</b>: Youth-on Hackathon - Hosted by VNUK, Danang University<br>
-<b>Authors</b>: Giac Quang Do (95% of all code), Dat Quoc Bui<br>
-<b>Idea</b>: Nghia Huy Nguyen, Trong Huy Nguyen, Giac Quang Do<br>
-<b>Presentation</b>: Nghia Huy Nguyen, Trong Huy Nguyen, Dat Quoc Bui, Giac Quang Do, Kien Trinh Hoang<br>
+<b>Competition</b>: <i>Youth-on Hackathon</i> - Hosted by VNUK, Danang University<br>
+<b>Authors</b>: <i>Giac Quang Do</i> (95% of all code), <i>Dat Quoc Bui</i><br>
+<b>Idea</b>: <i>Nghia Huy Nguyen</i>, <i>Trong Huy Nguyen</i>, <i>Giac Quang Do</i><br>
+<b>Presentation</b>: <i>Nghia Huy Nguyen</i>, <i>Trong Huy Nguyen</i>, <i>Dat Quoc Bui</i>, <i>Giac Quang Do</i>, <i>Kien Trinh Hoang</i><br>
+<b>Prize</b>: Bronze Medal
