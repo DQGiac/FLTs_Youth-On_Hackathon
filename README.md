@@ -7,7 +7,7 @@
 <br>
 <h1>FEATURE</h1>
 - Mindmap Generator: Generates mind maps from document and text<br>
-![alt text](https://github.com/DQGiac/FLTS_Youth-On_Hackathon/blob/main/static/mindmap.png?raw=true)
+<img src="https://github.com/DQGiac/FLTS_Youth-On_Hackathon/blob/main/static/mindmap.png?raw=true">
 
 <br>
 - Storytelling: Generates voice and image from document and text
