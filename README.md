@@ -7,9 +7,5 @@
 <br>
 <h1>FEATURE</h1>
 - Mindmap Generator: Generates mind maps from document and text<br>
-<br>
-<img src="https://github.com/DQGiac/FLTS_Youth-On_Hackathon/blob/main/static/mindmap.png?raw=true">
-<div align="center"><i>A mindmap generated on the events of Battle of Dien Bien Phu</i></div>
-<br>
 - Storytelling: Generates voice and image from document and text<br>
-- Podcast: Generates voice from document and text
+- Podcast: Generates voice from document and text<br>
