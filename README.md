@@ -7,5 +7,8 @@
 <br>
 <h1>FEATURE</h1>
 - Mindmap Generator: Generates mind maps from document and text<br>
-- Storytelling: Generates voice and image from document and text<br>
-- Podcast: Generates voice from document and text<br>
+&nbsp;&nbsp;=>Helps condense lessons into a readable, easy-to-remember format.<br>
+- AI Storytelling: Generates voice and image from document and text<br>
+&nbsp;&nbsp;=>Helps lessons become more interesting.<br>
+- AI Podcast: Generates voice from document and text<br>
+&nbsp;&nbsp;=>Helps users save time and learn while doing another job.<br>
