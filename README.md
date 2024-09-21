@@ -11,4 +11,4 @@
 - AI Storytelling: Generates voice and image from document and text<br>
 &nbsp;&nbsp;=>Helps lessons become more interesting.<br>
 - AI Podcast: Generates voice from document and text<br>
-&nbsp;&nbsp;=>Helps users save time and learn while doing another job.<br>
+&nbsp;&nbsp;=>Helps users save time and learn while doing another task.<br>
