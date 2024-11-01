@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-    let podcastind = 0
+    let strtellind = 0
     const uploadInput = document.getElementById("upload-anh");
     const preview = document.getElementById("preview");
     const useButton = document.getElementById("use-button");
@@ -54,24 +54,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
         const formData = new FormData();
         formData.append("message", result);
-        const response = await fetch("/podcast_gen", {
+        const response = await fetch("/strtell_gen", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },     
-            body: JSON.stringify({ "message": result, "podcastind": podcastind })
+            body: JSON.stringify({ "message": result, "strtellind": strtellind })
         });
         
-        let audio = document.getElementById("podcast_aud")
+        let audio = document.getElementById("strtell_aud")
         if (!audio) {
             audio = document.createElement("audio")
-            audio.id = "podcast_aud"
+            audio.id = "strtell_aud"
             audio.type = "audio/wav";
-            audio.src = "audio/podcast_aud" + podcastind + ".wav";
+            audio.src = "audio/strtell_aud" + strtellind + ".wav";
             audio.controls = true
             result_section.appendChild(audio);
         } else {
-            audio.src = "audio/podcast_aud" + podcastind + ".wav"
+            audio.src = "audio/strtell_aud" + strtellind + ".wav"
         }
-        podcastind += 1
+        strtellind += 1
         document.querySelector("#loading-overlay").style.display = "none";
         document.body.classList.remove("loading");
     }
