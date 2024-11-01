@@ -51,7 +51,7 @@ def ocr():
 @app.route("/mindmap_gen", methods=['POST'])
 def mindmap_gen():
     def gemini(ques):
-        genai.configure(api_key="AIzaSyCfM6NvU3tQ_pr7gepDw02PYVTwIR6GjOM")
+        genai.configure(api_key="_")
         model = genai.GenerativeModel('gemini-1.5-pro')
         a = (model.generate_content("" + ques))
         return a.candidates[0].content.parts[0].text
@@ -108,7 +108,7 @@ def podcast_gen():
 
 @app.route("/strtell_gen", methods=['POST'])
 def strtell_gen():
-    api_keys = ["d89a8977f9mshd28e97843a01cf2p158370jsn0cb69019b238", "8eacc0c16dmshb79a0fe65bc3344p14e02ajsn29bf84e2e8b9"] #"8dd3bfa3f3mshda3845149bb330ep1c4505jsna147eee499b5", "030c80dc47mshbe06ccceee3100cp18b554jsnc6867b4f1b65", "0c6c1ec218msh58fce662b00a268p1e2172jsn77027176568f"
+    api_keys = ["_", "_", "_", "_"]
     def summarizer(sentence, key):
         url = "https://chatgpt-api8.p.rapidapi.com/"
         payload = [
