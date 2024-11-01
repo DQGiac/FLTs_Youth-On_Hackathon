@@ -60,6 +60,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
             body: JSON.stringify({ "message": result, "strtellind": strtellind })
         });
         
+        a = document.createElement("a")
+        a.src = response["url"]
+        result_section.appendChild(a)
+        
         let audio = document.getElementById("strtell_aud")
         if (!audio) {
             audio = document.createElement("audio")
