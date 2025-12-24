@@ -1,5 +1,6 @@
 <h1>CREDIT</h1>
 <b>Competition</b>: <i>Youth-on Hackathon</i> - Hosted by VNUK, Danang University<br>
+<b>Theme</b>: Smart Learning in the AI Era<br>
 <b>Prize</b>: Bronze Medal<br>
 <b>Leaders: <i>Giac Quang Do</i> (main), <i>Nghia Huy Nguyen</i>, <i>Trong Huy Nguyen</i> (vice)</b><br>
 <b>Authors</b>: <i>Giac Quang Do</i> (80% of all code), <i>Dat Quoc Bui</i><br>
