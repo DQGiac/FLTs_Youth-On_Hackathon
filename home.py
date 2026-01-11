@@ -131,7 +131,7 @@ def strtell_gen():
         return data["text"]
 
     def gemini(ques):
-        genai.configure(api_key="AIzaSyCfM6NvU3tQ_pr7gepDw02PYVTwIR6GjOM")
+        genai.configure(api_key="_")
         model = genai.GenerativeModel('gemini-1.5-flash')
         a = (model.generate_content(ques))
         return a.candidates[0].content.parts[0].text
@@ -180,3 +180,4 @@ def strtell_gen():
 
 if __name__ == "__main__":
     app.run("0.0.0.0", debug=True, port=5000)
+
